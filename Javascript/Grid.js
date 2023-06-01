@@ -70,26 +70,4 @@ class Grid {
 
     return document.getElementById(id);
   }
-  // Méthode pour récupérer une cellule (une des DIVs filles) à la position (x, y) de la souris
-  getCellFromMousePosition(x, y) {
-    let column = Math.floor((x - this.x) / (this.width + 2));
-    let row = Math.floor((y - this.y) / (this.height + 2));
-    let id;
-
-    if (column < 0) {
-      column = 0;
-    }
-    if (row < 0) {
-      row = 0;
-    }
-    if (column >= this.columns) {
-      column = this.columns - 1;
-    }
-    if (row >= this.rows) {
-      row = this.rows - 1;
-    }
-    id = this.object.id + "_C" + column + "R" + row;
-    console.log(id, column, row);
-    return document.getElementById(id);
-  }
 }

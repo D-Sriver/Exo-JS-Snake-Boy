@@ -4,16 +4,21 @@
 // Nombre de colonne, nombre de ligne
 // Largeur colonne, largeur ligne
 // Définis la couleur de fond
-let grid00 = new Grid("Grid00", 50, 50, 20, 20, 15, 15, "green");
+let grid00 = new Grid("Grid00", 50, 50, 20, 20, 15, 15, "#454545");
 
 function start() {
   create(grid00, myFunctionMouseMove00, myFunctionClick00);
 
-  // Création du serpent
-  let snake = new Snake(grid00);
-  snake.init();
+  // Création du serpent avec emplacement sur la grille.
+  let snake = new Snake(grid00, grid00.columns - 2, 0);
   snake.draw();
+
+  setInterval(() => {
+    snake.move();
+    snake.draw();
+  }, 250);
 }
+
 //création de la grille
 function create(grid) {
   document.body.appendChild(grid.object);
