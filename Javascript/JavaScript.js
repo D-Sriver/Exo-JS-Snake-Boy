@@ -8,6 +8,11 @@ let grid00 = new Grid("Grid00", 50, 50, 20, 20, 15, 15, "green");
 
 function start() {
   create(grid00, myFunctionMouseMove00, myFunctionClick00);
+
+  // Création du serpent
+  let snake = new Snake(grid00);
+  snake.init();
+  snake.draw();
 }
 //création de la grille
 function create(grid) {
