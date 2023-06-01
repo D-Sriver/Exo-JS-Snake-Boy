@@ -2,11 +2,8 @@ class Snake {
   constructor(grid, startColumn, startRow) {
     this.grid = grid;
     this.cells = [];
-    this.direction = "right"; // Direction initiale du serpent
-
     // Initialisation du serpent
     this.init(startColumn, startRow);
-
     // Ajout de l'écouteur d'événement pour les touches de flèches
     document.addEventListener("keydown", (event) => {
       switch (event.key) {
@@ -27,7 +24,7 @@ class Snake {
   }
 
   init(startColumn, startRow) {
-    // Ajout du premier cube du serpent à la position de départ spécifiée
+    // Ajout du serpent
     let cell = this.grid.getCellFromColumnRow(startColumn, startRow);
     cell.style.backgroundColor = "#9bbc0f	";
     this.cells.push(cell);
@@ -42,7 +39,7 @@ class Snake {
   }
 
   move() {
-    // Déplacement du serpent dans la direction actuelle
+    // Déplacement du serpent continue
     let head = this.cells[0];
     let newHead;
 
@@ -61,14 +58,13 @@ class Snake {
         break;
     }
 
-    // Vérification de la collision
+    // Vérifie si il y a collision
     if (this.checkCollision(newHead)) {
       console.log("Game over!");
       return;
     }
-
     // Ajout de la nouvelle tête du serpent
-    newHead.style.backgroundColor = "#0f380f	";
+    newHead.style.backgroundColor = "#3f4e07	";
     this.cells.unshift(newHead);
 
     // Suppression de la dernière queue du serpent
