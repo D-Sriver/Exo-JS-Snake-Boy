@@ -29,7 +29,7 @@ class Snake {
   init(startColumn, startRow) {
     // Ajout du premier cube du serpent à la position de départ spécifiée
     let cell = this.grid.getCellFromColumnRow(startColumn, startRow);
-    cell.style.backgroundColor = "#9B9B9B";
+    cell.style.backgroundColor = "#9bbc0f	";
     this.cells.push(cell);
   }
 
@@ -37,7 +37,7 @@ class Snake {
     // Dessin du serpent sur la grille
     for (let i = 0; i < this.cells.length; i++) {
       let cell = this.cells[i];
-      cell.style.backgroundColor = "#9B9B9B";
+      cell.style.backgroundColor = "#3f4e07		";
     }
   }
 
@@ -61,12 +61,44 @@ class Snake {
         break;
     }
 
+    // Vérification de la collision
+    if (this.checkCollision(newHead)) {
+      console.log("Game over!");
+      return;
+    }
+
     // Ajout de la nouvelle tête du serpent
-    newHead.style.backgroundColor = "#9B9B9B";
+    newHead.style.backgroundColor = "#0f380f	";
     this.cells.unshift(newHead);
 
     // Suppression de la dernière queue du serpent
     let tail = this.cells.pop();
     tail.style.backgroundColor = "";
+  }
+
+  checkCollision(cell) {
+    // Vérification si la cellule est en dehors de la grille
+    if (
+      !cell ||
+      cell.column < 0 ||
+      cell.column >= this.grid.columns ||
+      cell.row < 0 ||
+      cell.row >= this.grid.rows
+    ) {
+      return true;
+    }
+
+    // Vérification si la cellule touche un autre cube du serpent
+    for (let i = 0; i < this.cells.length; i++) {
+      let c = this.cells[i];
+      if (c === cell) {
+        continue;
+      }
+      if (c.column === cell.column && c.row === cell.row) {
+        return true;
+      }
+    }
+
+    return false;
   }
 }

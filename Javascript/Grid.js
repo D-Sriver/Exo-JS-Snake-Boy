@@ -34,7 +34,7 @@ class Grid {
     // DIV mère qui encapsulera les DIVs filles
     this.object = createDiv(
       id,
-      "green",
+      "#306230",
       x,
       y,
       columns * (width + 2),
@@ -48,7 +48,7 @@ class Grid {
       for (let column = 0; column < columns; ++column) {
         let div = createDiv(
           id + "_C" + column + "R" + row,
-          "black",
+          "#8bac0f",
           left,
           top,
           width,

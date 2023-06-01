@@ -4,7 +4,7 @@
 // Nombre de colonne, nombre de ligne
 // Largeur colonne, largeur ligne
 // Définis la couleur de fond
-let grid00 = new Grid("Grid00", 50, 50, 20, 20, 15, 15, "#454545");
+let grid00 = new Grid("Grid00", 50, 50, 20, 20, 15, 15, "#9ec311");
 
 function start() {
   create(grid00, myFunctionMouseMove00, myFunctionClick00);
