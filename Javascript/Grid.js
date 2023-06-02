@@ -23,6 +23,7 @@ class Grid {
       div.style.top = top + "px";
       div.style.width = width + "px";
       div.style.height = height + "px";
+
       return div;
     }
     this.x = x;

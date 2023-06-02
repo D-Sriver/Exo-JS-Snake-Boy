@@ -2,6 +2,7 @@ class Snake {
   constructor(grid, startColumn, startRow) {
     this.grid = grid;
     this.cells = [];
+    this.direction = "right";
     // Initialisation du serpent
     this.init(startColumn, startRow);
     // Ajout de l'écouteur d'événement pour les touches de flèches
@@ -58,7 +59,7 @@ class Snake {
         break;
     }
 
-    // Vérifie si il y a collision
+    // Vérifie si il y a collision avec le mur
     if (this.checkCollision(newHead)) {
       console.log("Game over!");
       return;
