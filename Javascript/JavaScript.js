@@ -12,9 +12,6 @@ function start() {
   initializePomme();
   startGameLoop();
 }
-
-document.body.style.backgroundColor = "green";
-
 function createGrid() {
   // Création de la grille
   grid = new Grid("Grid00", 50, 50, 20, 20, 15, 15, "#9ec311");
@@ -22,7 +19,7 @@ function createGrid() {
   // Création de la bordure div
   let bordureDiv = document.createElement("div");
   bordureDiv.id = "Bordure";
-  bordureDiv.style.backgroundColor = "gray";
+  bordureDiv.style.backgroundColor = "#9ea4b4";
   bordureDiv.style.width = "440px";
   bordureDiv.style.height = "440px";
   bordureDiv.style.borderRadius = "25px";
