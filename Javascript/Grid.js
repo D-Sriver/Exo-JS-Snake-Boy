@@ -12,7 +12,7 @@ class Grid {
       let div = document.createElement("div");
 
       div.id = id;
-      div.style.margin = "0px";
+      div.style.margin = "1px";
       div.style.borderStyle = "solid";
       div.style.borderWidth = "1px";
       div.style.borderColor = borderColor;

@@ -5,6 +5,7 @@ let x = 250;
 let score = 0;
 
 function start() {
+  document.body.style.backgroundColor = "#738e0c";
   createGrid();
   createScore();
   initializeSnake();
@@ -12,10 +13,34 @@ function start() {
   startGameLoop();
 }
 
+document.body.style.backgroundColor = "green";
+
 function createGrid() {
   // Création de la grille
   grid = new Grid("Grid00", 50, 50, 20, 20, 15, 15, "#9ec311");
   document.body.appendChild(grid.object);
+  // Création de la bordure div
+  let bordureDiv = document.createElement("div");
+  bordureDiv.id = "Bordure";
+  bordureDiv.style.backgroundColor = "gray";
+  bordureDiv.style.width = "440px";
+  bordureDiv.style.height = "440px";
+  bordureDiv.style.borderRadius = "25px";
+  // creation du logoTexte
+  let texteElement = document.createElement("div");
+  texteElement.id = "Texte";
+  texteElement.innerHTML = "Snake Boy";
+  texteElement.style.position = "absolute";
+  texteElement.style.top = "410px";
+  texteElement.style.left = "175px";
+  texteElement.style.width = "110px";
+  texteElement.style.color = "white";
+  texteElement.style.fontSize = "x-large";
+
+  document.body.appendChild(texteElement);
+
+  // Ajout de la bordure div à la page
+  document.body.appendChild(bordureDiv);
 }
 
 function createScore() {
@@ -23,9 +48,9 @@ function createScore() {
   let scoreElement = document.createElement("div");
   scoreElement.id = "Score";
   scoreElement.innerHTML = "Score: " + score;
-  scoreElement.style.display = "flex";
-  scoreElement.style.justifyContent = "center";
-  scoreElement.style.alignItems = "center";
+  scoreElement.style.color = "white";
+  scoreElement.style.fontSize = "1.3rem";
+
   document.body.appendChild(scoreElement);
 }
 
