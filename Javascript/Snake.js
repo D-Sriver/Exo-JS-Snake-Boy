@@ -64,7 +64,7 @@ class Snake {
       return;
     }
     // Ajout de la nouvelle tête du serpent
-    newHead.style.backgroundColor = "#3f4e07	";
+    newHead.style.backgroundColor = "#0f380f";
     this.cells.unshift(newHead);
 
     // Suppression de la dernière queue du serpent

@@ -5,7 +5,11 @@
 // Largeur colonne, largeur ligne
 // Définis la couleur de fond
 let grid00 = new Grid("Grid00", 50, 50, 20, 20, 15, 15, "#9ec311");
-let snake = new Snake(grid, 10, 10);
+let snake = new Snake(
+  grid,
+  Math.floor(this.grid.columns / 2),
+  Math.floor(this.grid.rows / 2)
+);
 
 function start() {
   create(grid00, myFunctionMouseMove00, myFunctionClick00);
