@@ -25,7 +25,6 @@ function createGrid() {
   // Création de la grille
   grid = new Grid("Grid00", 50, 50, 20, 20, 15, 15, "#9ec311");
   document.body.appendChild(grid.object);
-
   // Création de la bordure div
   let bordureDiv = document.createElement("div");
   bordureDiv.id = "Bordure";
@@ -98,9 +97,9 @@ function launchMusic() {
     audio.muted = false;
     SoundButton.textContent = "Couper la musique";
   } else {
-    backgroundMusic.pause();
+    backgroundMusic.load();
     audio.muted = true;
-    SoundButton.textContent = "Reprendre la musique";
+    SoundButton.textContent = "Relancer la musique";
   }
 }
 
