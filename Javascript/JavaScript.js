@@ -14,6 +14,12 @@ function start() {
   initializeSnake();
   initializePomme();
   startGameLoop();
+
+  document.body.style.display = "flex";
+  document.body.style.flexDirection = "column";
+  document.body.style.alignItems = "center";
+  document.body.style.justifyContent = "center";
+  document.body.style.height = "100vh";
 }
 function createGrid() {
   // Création de la grille
@@ -32,7 +38,6 @@ function createGrid() {
   let texteElement = document.createElement("div");
   texteElement.id = "Texte";
   texteElement.innerHTML = "SNAKE BOY";
-  texteElement.style.position = "absolute";
   texteElement.style.top = "405px";
   texteElement.style.left = "165px";
   texteElement.style.width = "200px";
@@ -53,7 +58,6 @@ function createScore() {
   bordureDiv.style.backgroundColor = "#9ea4b4";
   bordureDiv.style.width = "200px";
   bordureDiv.style.height = "200px";
-  bordureDiv.style.position = "absolute";
   bordureDiv.style.zIndex = "1";
   bordureDiv.style.left = "500px";
   bordureDiv.style.top = "30px";
@@ -68,7 +72,6 @@ function createScore() {
   scoreElement.style.fontSize = "1.3rem";
   scoreElement.style.fontFamily = "Gill Sans";
   scoreElement.style.fontStyle = "italic";
-  scoreElement.style.position = "absolute";
   scoreElement.style.left = "560px";
   scoreElement.style.top = "40px";
 
@@ -77,7 +80,6 @@ function createScore() {
   SoundButton.style.zIndex = "2";
   SoundButton.style.backgroundColor = "#9ea4b4";
   SoundButton.style.color = "white";
-  SoundButton.style.position = "absolute";
   SoundButton.style.left = "535px";
   SoundButton.style.borderRadius = "20px";
   SoundButton.style.backgroundColor = "#9bbc0f";
@@ -91,8 +93,15 @@ function createScore() {
   document.body.appendChild(SoundButton);
 }
 function launchMusic() {
-  backgroundMusic.play();
-  audio.muted = false;
+  if (backgroundMusic.paused) {
+    backgroundMusic.play();
+    audio.muted = false;
+    SoundButton.textContent = "Couper la musique";
+  } else {
+    backgroundMusic.pause();
+    audio.muted = true;
+    SoundButton.textContent = "Reprendre la musique";
+  }
 }
 
 function initializeSnake() {
