@@ -23,6 +23,7 @@ class Pomme {
       // Supprime la pomme et ajoute une nouvelle pomme
       this.cell.style.backgroundColor = "";
       this.generate();
+      audio.play();
       return true;
     }
     return false;
