@@ -16,7 +16,7 @@ function start() {
   startGameLoop();
 
   document.body.style.display = "flex";
-  document.body.style.flexDirection = "column";
+  document.body.style.flexDirection = "row";
   document.body.style.alignItems = "center";
   document.body.style.justifyContent = "center";
   document.body.style.height = "100vh";
@@ -28,8 +28,10 @@ function createGrid() {
   let bordureDiv = document.createElement("div");
   bordureDiv.id = "Bordure";
   bordureDiv.style.display = "flex";
+  bordureDiv.style.flexDirection = "column";
   bordureDiv.style.alignItems = "center";
-  bordureDiv.style.justifyContent = "center";
+  bordureDiv.style.justifyContent = "flex-end";
+  bordureDiv.style.paddingBottom = "20px";
   bordureDiv.style.backgroundColor = "#9ea4b4";
   bordureDiv.style.minWidth = "440px";
   bordureDiv.style.minHeight = "440px";
@@ -40,15 +42,14 @@ function createGrid() {
 
   // Création de l'élément texte
   let texteElement = document.createElement("div");
+  texteElement.style.display = "flex";
   texteElement.id = "Texte";
   texteElement.innerHTML = "SNAKE BOY";
   texteElement.style.color = "white";
   texteElement.style.fontFamily = "Gill Sans";
   texteElement.style.fontSize = "x-large";
-  texteElement.style.position = "absolute";
   texteElement.style.top = "50%";
   texteElement.style.left = "50%";
-  texteElement.style.transform = "translate(-50%, -50%)";
 
   bordureDiv.appendChild(texteElement);
 
@@ -57,18 +58,24 @@ function createGrid() {
 }
 
 function createScore() {
-  // Création de la bordure div
-  let bordureDiv = document.createElement("div");
-  bordureDiv.id = "fond";
-  bordureDiv.style.backgroundColor = "#9ea4b4";
-  bordureDiv.style.width = "200px";
-  bordureDiv.style.height = "200px";
-  bordureDiv.style.zIndex = "1";
-  bordureDiv.style.left = "500px";
-  bordureDiv.style.top = "30px";
-  bordureDiv.style.borderRadius = "25px";
+  let gameSection = document.createElement("section");
+  gameSection.id = "Game";
+  gameSection.style.display = "flex";
+  gameSection.style.justifyContent = "space-between";
 
-  // Création de l'élément score
+  let fondDiv = document.createElement("div");
+  fondDiv.id = "fond";
+  fondDiv.style.display = "flex";
+  fondDiv.style.alignItems = "center";
+  fondDiv.style.justifyContent = "center";
+  fondDiv.style.backgroundColor = "#9ea4b4";
+  fondDiv.style.width = "200px";
+  fondDiv.style.height = "200px";
+  fondDiv.style.zIndex = "1";
+  fondDiv.style.left = "500px";
+  fondDiv.style.top = "30px";
+  fondDiv.style.borderRadius = "25px";
+
   let scoreElement = document.createElement("div");
   scoreElement.id = "Score";
   scoreElement.innerHTML = "Score: " + score;
@@ -77,8 +84,8 @@ function createScore() {
   scoreElement.style.fontSize = "1.3rem";
   scoreElement.style.fontFamily = "Gill Sans";
   scoreElement.style.fontStyle = "italic";
-  scoreElement.style.left = "560px";
-  scoreElement.style.top = "40px";
+  scoreElement.style.left = "50%";
+  scoreElement.style.top = "50%";
 
   SoundButton = document.createElement("button");
   SoundButton.textContent = "Lancer la musique";
@@ -93,10 +100,13 @@ function createScore() {
 
   SoundButton.addEventListener("click", launchMusic);
 
-  document.body.appendChild(scoreElement);
-  document.body.appendChild(bordureDiv);
+  document.body.appendChild(gameSection);
+  fondDiv.appendChild(scoreElement);
+  document.body.appendChild(fondDiv);
   document.body.appendChild(SoundButton);
+  gameSection.appendChild(fondDiv);
 }
+
 function launchMusic() {
   if (backgroundMusic.paused) {
     backgroundMusic.play();
