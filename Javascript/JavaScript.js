@@ -18,8 +18,7 @@ function start() {
   document.body.style.display = "flex";
   document.body.style.flexDirection = "row";
   document.body.style.alignItems = "center";
-  document.body.style.justifyContent = "center";
-  document.body.style.height = "100vh";
+  document.body.style.justifyContent = "space-evenly";
 }
 function createGrid() {
   // Création de la grille
@@ -27,11 +26,14 @@ function createGrid() {
   // Création de la div "bordure"
   let bordureDiv = document.createElement("div");
   bordureDiv.id = "Bordure";
+
+  bordureDiv.style.position = "relative";
   bordureDiv.style.display = "flex";
-  bordureDiv.style.flexDirection = "column";
-  bordureDiv.style.alignItems = "center";
-  bordureDiv.style.justifyContent = "flex-end";
+  bordureDiv.style.margin = "0 auto";
+  bordureDiv.style.alignItems = "flex-end";
+  bordureDiv.style.justifyContent = "center";
   bordureDiv.style.paddingBottom = "20px";
+
   bordureDiv.style.backgroundColor = "#9ea4b4";
   bordureDiv.style.minWidth = "440px";
   bordureDiv.style.minHeight = "440px";
@@ -52,8 +54,6 @@ function createGrid() {
   texteElement.style.left = "50%";
 
   bordureDiv.appendChild(texteElement);
-
-  // Ajout de la bordure div à la page
   document.body.appendChild(bordureDiv);
 }
 
@@ -61,15 +61,16 @@ function createScore() {
   let gameSection = document.createElement("section");
   gameSection.id = "Game";
   gameSection.style.display = "flex";
-  gameSection.style.justifyContent = "space-between";
+  gameSection.style.justifyContent = "space-evenly";
 
   let fondDiv = document.createElement("div");
   fondDiv.id = "fond";
   fondDiv.style.display = "flex";
+  fondDiv.style.flexDirection = "column";
   fondDiv.style.alignItems = "center";
   fondDiv.style.justifyContent = "center";
   fondDiv.style.backgroundColor = "#9ea4b4";
-  fondDiv.style.width = "200px";
+  fondDiv.style.width = "30%";
   fondDiv.style.height = "200px";
   fondDiv.style.zIndex = "1";
   fondDiv.style.left = "500px";
@@ -84,6 +85,7 @@ function createScore() {
   scoreElement.style.fontSize = "1.3rem";
   scoreElement.style.fontFamily = "Gill Sans";
   scoreElement.style.fontStyle = "italic";
+  scoreElement.style.marginBottom = "30px";
   scoreElement.style.left = "50%";
   scoreElement.style.top = "50%";
 
@@ -100,11 +102,14 @@ function createScore() {
 
   SoundButton.addEventListener("click", launchMusic);
 
+  gameSection.appendChild(fondDiv);
+
   document.body.appendChild(gameSection);
-  fondDiv.appendChild(scoreElement);
   document.body.appendChild(fondDiv);
   document.body.appendChild(SoundButton);
-  gameSection.appendChild(fondDiv);
+
+  fondDiv.appendChild(scoreElement);
+  fondDiv.appendChild(SoundButton);
 }
 
 function launchMusic() {
