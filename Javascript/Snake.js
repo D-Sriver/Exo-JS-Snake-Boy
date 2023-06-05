@@ -84,18 +84,12 @@ class Snake {
     ) {
       return true;
     }
-
-    // Vérification si la cellule touche un autre cube du serpent
-    for (let i = 0; i < this.cells.length; i++) {
-      let c = this.cells[i];
-      if (c === cell) {
-        continue;
-      }
-      if (c.column === cell.column && c.row === cell.row) {
-        return true;
-      }
-    }
-
     return false;
+  }
+  // Agrandit le snake
+  grow() {
+    const tail = this.cells[this.cells.length - 1];
+    const newPart = this.grid.getCellFromColumnRow(tail.column, tail.row);
+    this.cells.push(newPart);
   }
 }

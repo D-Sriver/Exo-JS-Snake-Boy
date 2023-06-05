@@ -24,6 +24,8 @@ class Pomme {
       this.cell.style.backgroundColor = "";
       this.generate();
       audio.play();
+      snake.grow();
+
       return true;
     }
     return false;

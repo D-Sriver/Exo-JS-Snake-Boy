@@ -3,6 +3,7 @@ let pomme;
 let snake;
 let x = 350;
 let score = 0;
+let speed = 1;
 let audio = new Audio("./misc/cw_sound39.wav");
 let backgroundMusic = new Audio("./misc/bgsound.mp3");
 backgroundMusic.loop = true;
@@ -16,17 +17,16 @@ function start() {
   startGameLoop();
 
   document.body.style.display = "flex";
-  document.body.style.flexDirection = "row";
   document.body.style.alignItems = "center";
   document.body.style.justifyContent = "space-evenly";
 }
 function createGrid() {
   // Création de la grille
   grid = new Grid("Grid00", 50, 50, 20, 20, 15, 15, "#9ec311");
+
   // Création de la div "bordure"
   let bordureDiv = document.createElement("div");
   bordureDiv.id = "Bordure";
-
   bordureDiv.style.position = "relative";
   bordureDiv.style.display = "flex";
   bordureDiv.style.margin = "0 auto";
@@ -39,10 +39,9 @@ function createGrid() {
   bordureDiv.style.minHeight = "440px";
   bordureDiv.style.borderRadius = "25px";
 
-  // Ajout de la div "grid" à l'intérieur de la div "bordure"
   bordureDiv.appendChild(grid.object);
 
-  // Création de l'élément texte
+  // Création du texte SNAKE BOY
   let texteElement = document.createElement("div");
   texteElement.style.display = "flex";
   texteElement.id = "Texte";
@@ -82,12 +81,24 @@ function createScore() {
   scoreElement.innerHTML = "Score: " + score;
   scoreElement.style.color = "white";
   scoreElement.style.zIndex = "2";
-  scoreElement.style.fontSize = "1.3rem";
+  scoreElement.style.fontSize = "1.7rem";
   scoreElement.style.fontFamily = "Gill Sans";
   scoreElement.style.fontStyle = "italic";
   scoreElement.style.marginBottom = "30px";
   scoreElement.style.left = "50%";
   scoreElement.style.top = "50%";
+
+  let speedElement = document.createElement("div");
+  speedElement.id = "Speed";
+  speedElement.innerHTML = "Speed: " + speed;
+  speedElement.style.color = "white";
+  speedElement.style.zIndex = "2";
+  speedElement.style.fontSize = "1.7rem";
+  speedElement.style.fontFamily = "Gill Sans";
+  speedElement.style.fontStyle = "italic";
+  speedElement.style.marginBottom = "30px";
+  speedElement.style.left = "50%";
+  speedElement.style.top = "50%";
 
   SoundButton = document.createElement("button");
   SoundButton.textContent = "Lancer la musique";
@@ -101,13 +112,11 @@ function createScore() {
   SoundButton.style.top = "70px";
 
   SoundButton.addEventListener("click", launchMusic);
-
   gameSection.appendChild(fondDiv);
-
   document.body.appendChild(gameSection);
   document.body.appendChild(fondDiv);
   document.body.appendChild(SoundButton);
-
+  fondDiv.appendChild(speedElement);
   fondDiv.appendChild(scoreElement);
   fondDiv.appendChild(SoundButton);
 }
@@ -145,7 +154,9 @@ function startGameLoop() {
     if (pomme.checkCollision(snake)) {
       // Incrémentation du score
       score += 100;
+      speed += 1;
       updateScore();
+      updateSpeed();
     }
   }, x);
 }
@@ -154,4 +165,9 @@ function updateScore() {
   // Mettre à jour l'affichage du score
   let scoreElement = document.getElementById("Score");
   scoreElement.innerHTML = "Score: " + score;
+}
+function updateSpeed() {
+  // Mettre à jour l'affichage du score
+  let scoreElement = document.getElementById("Speed");
+  scoreElement.innerHTML = "speed: " + speed;
 }
