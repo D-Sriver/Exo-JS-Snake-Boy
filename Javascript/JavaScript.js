@@ -1,9 +1,8 @@
 ﻿let grid;
 let pomme;
 let snake;
-let x = 350;
+let speed = 200;
 let score = 0;
-let speed = 1;
 let audio = new Audio("./misc/cw_sound39.wav");
 let backgroundMusic = new Audio("./misc/bgsound.mp3");
 backgroundMusic.loop = true;
@@ -144,21 +143,23 @@ function initializePomme() {
   pomme = new Pomme(grid);
   pomme.generate();
 }
-
 function startGameLoop() {
-  // Ajout du mouvement avec un intervalle de X
-  setInterval(() => {
-    snake.move();
-    snake.draw();
-    // Vérification de la collision avec la pomme
-    if (pomme.checkCollision(snake)) {
-      // Incrémentation du score
-      score += 100;
-      speed += 1;
-      updateScore();
-      updateSpeed();
-    }
-  }, x);
+  function movement() {
+    setTimeout(() => {
+      snake.move();
+      snake.draw();
+      // Vérification de la collision avec la pomme
+      if (pomme.checkCollision(snake)) {
+        // Incrémentation du score
+        score += 100;
+        speed -= 5;
+        updateScore();
+        updateSpeed();
+      }
+      movement();
+    }, speed);
+  }
+  movement();
 }
 
 function updateScore() {
