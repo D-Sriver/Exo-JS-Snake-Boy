@@ -24,27 +24,33 @@ function start() {
 function createGrid() {
   // Création de la grille
   grid = new Grid("Grid00", 50, 50, 20, 20, 15, 15, "#9ec311");
-  document.body.appendChild(grid.object);
-  // Création de la bordure div
+  // Création de la div "bordure"
   let bordureDiv = document.createElement("div");
   bordureDiv.id = "Bordure";
+  bordureDiv.style.display = "flex";
+  bordureDiv.style.alignItems = "center";
+  bordureDiv.style.justifyContent = "center";
   bordureDiv.style.backgroundColor = "#9ea4b4";
-  bordureDiv.style.width = "440px";
-  bordureDiv.style.height = "440px";
+  bordureDiv.style.minWidth = "440px";
+  bordureDiv.style.minHeight = "440px";
   bordureDiv.style.borderRadius = "25px";
 
-  // creation du logoTexte
+  // Ajout de la div "grid" à l'intérieur de la div "bordure"
+  bordureDiv.appendChild(grid.object);
+
+  // Création de l'élément texte
   let texteElement = document.createElement("div");
   texteElement.id = "Texte";
   texteElement.innerHTML = "SNAKE BOY";
-  texteElement.style.top = "405px";
-  texteElement.style.left = "165px";
-  texteElement.style.width = "200px";
   texteElement.style.color = "white";
   texteElement.style.fontFamily = "Gill Sans";
   texteElement.style.fontSize = "x-large";
+  texteElement.style.position = "absolute";
+  texteElement.style.top = "50%";
+  texteElement.style.left = "50%";
+  texteElement.style.transform = "translate(-50%, -50%)";
 
-  document.body.appendChild(texteElement);
+  bordureDiv.appendChild(texteElement);
 
   // Ajout de la bordure div à la page
   document.body.appendChild(bordureDiv);
