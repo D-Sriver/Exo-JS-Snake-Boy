@@ -4,7 +4,7 @@ let snake;
 let x = 350;
 let score = 0;
 let audio = new Audio("./misc/cw_sound39.wav");
-let backgroundMusic = new Audio("./misc/bgsound.mp3");
+//let backgroundMusic = new Audio("./misc/bgsound.mp3");
 backgroundMusic.loop = true;
 
 function start() {
@@ -32,12 +32,13 @@ function createGrid() {
   // creation du logoTexte
   let texteElement = document.createElement("div");
   texteElement.id = "Texte";
-  texteElement.innerHTML = "Snake Boy";
+  texteElement.innerHTML = "SNAKE BOY";
   texteElement.style.position = "absolute";
-  texteElement.style.top = "410px";
-  texteElement.style.left = "175px";
-  texteElement.style.width = "110px";
+  texteElement.style.top = "405px";
+  texteElement.style.left = "165px";
+  texteElement.style.width = "200px";
   texteElement.style.color = "white";
+  texteElement.style.fontFamily = "Gill Sans";
   texteElement.style.fontSize = "x-large";
 
   document.body.appendChild(texteElement);
@@ -66,7 +67,8 @@ function createScore() {
   scoreElement.style.color = "white";
   scoreElement.style.zIndex = "2";
   scoreElement.style.fontSize = "1.3rem";
-  scoreElement.style.fontFamily = "";
+  scoreElement.style.fontFamily = "Gill Sans";
+  scoreElement.style.fontStyle = "italic";
   scoreElement.style.position = "absolute";
   scoreElement.style.left = "560px";
   scoreElement.style.top = "40px";
