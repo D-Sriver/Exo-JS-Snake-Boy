@@ -4,7 +4,7 @@ let snake;
 let x = 350;
 let score = 0;
 let audio = new Audio("./misc/cw_sound39.wav");
-//let backgroundMusic = new Audio("./misc/bgsound.mp3");
+let backgroundMusic = new Audio("./misc/bgsound.mp3");
 backgroundMusic.loop = true;
 
 function start() {
@@ -14,7 +14,6 @@ function start() {
   initializeSnake();
   initializePomme();
   startGameLoop();
-  backgroundMusic.play();
 }
 function createGrid() {
   // Création de la grille
@@ -59,9 +58,9 @@ function createScore() {
   bordureDiv.style.left = "500px";
   bordureDiv.style.top = "30px";
   bordureDiv.style.borderRadius = "25px";
+
   // Création de l'élément score
   let scoreElement = document.createElement("div");
-
   scoreElement.id = "Score";
   scoreElement.innerHTML = "Score: " + score;
   scoreElement.style.color = "white";
@@ -73,8 +72,27 @@ function createScore() {
   scoreElement.style.left = "560px";
   scoreElement.style.top = "40px";
 
+  SoundButton = document.createElement("button");
+  SoundButton.textContent = "Lancer la musique";
+  SoundButton.style.zIndex = "2";
+  SoundButton.style.backgroundColor = "#9ea4b4";
+  SoundButton.style.color = "white";
+  SoundButton.style.position = "absolute";
+  SoundButton.style.left = "535px";
+  SoundButton.style.borderRadius = "20px";
+  SoundButton.style.backgroundColor = "#9bbc0f";
+  SoundButton.style.padding = "4px";
+  SoundButton.style.top = "70px";
+
+  SoundButton.addEventListener("click", launchMusic);
+
   document.body.appendChild(scoreElement);
   document.body.appendChild(bordureDiv);
+  document.body.appendChild(SoundButton);
+}
+function launchMusic() {
+  backgroundMusic.play();
+  audio.muted = false;
 }
 
 function initializeSnake() {
