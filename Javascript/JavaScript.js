@@ -68,13 +68,11 @@ function startGameLoop() {
   setInterval(() => {
     snake.move();
     snake.draw();
-
     // Vérification de la collision avec la pomme
     if (pomme.checkCollision(snake)) {
       // Incrémentation du score
       score += 100;
       updateScore();
-      pomme.generate();
     }
   }, x);
 }
