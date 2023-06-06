@@ -17,7 +17,7 @@ class Bloc {
     if (isSnakeCell) {
       this.generate(); // Génère une nouvelle position pour le Bloc
     } else {
-      this.cell.style.backgroundColor = "red";
+      this.cell.style.backgroundColor = "#646464";
     }
   }
 
@@ -25,7 +25,7 @@ class Bloc {
     // Vérifie si la tête du serpent est sur la même cellule que le Bloc
     if (snake.cells[0] === this.cell) {
       // Supprime le Bloc et ajoute une nouvelle Bloc
-      this.cell.style.backgroundColor = "yellow";
+      this.cell.style.backgroundColor = "#fff";
       return true;
     }
   }

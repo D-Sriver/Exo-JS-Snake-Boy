@@ -29,6 +29,7 @@ function start() {
 function createGrid() {
   // Création de la grille
   grid = new Grid("Grid00", 50, 50, X, Y, 15, 15, "#9ec311");
+
   // Création de la div "bordure"
   let bordureDiv = document.createElement("div");
   bordureDiv.id = "Bordure";
@@ -75,7 +76,7 @@ function createScore() {
   fondDiv.style.justifyContent = "center";
   fondDiv.style.backgroundColor = "#9ea4b4";
   fondDiv.style.width = "30%";
-  fondDiv.style.height = "200px";
+  fondDiv.style.height = "400px";
   fondDiv.style.zIndex = "1";
   fondDiv.style.left = "500px";
   fondDiv.style.top = "30px";
@@ -127,6 +128,45 @@ function createScore() {
   fondDiv.appendChild(speedElement);
   fondDiv.appendChild(scoreElement);
   fondDiv.appendChild(SoundButton);
+
+  let rulesDiv = document.createElement("div");
+  rulesDiv.style.display = "flex";
+  rulesDiv.style.flexDirection = "column";
+  rulesDiv.style.alignItems = "center";
+  rulesDiv.style.justifyContent = "center";
+  rulesDiv.style.backgroundColor = "white";
+  rulesDiv.style.width = "90%";
+  rulesDiv.style.borderRadius = "25px";
+  rulesDiv.style.marginTop = "10px";
+
+  let rulesTable = document.createElement("table");
+  rulesTable.style.width = "80%";
+  rulesTable.style.height = "100%";
+
+  let ruleRow1 = document.createElement("tr");
+  let ruleCell1 = document.createElement("td");
+  ruleCell1.textContent =
+    "Les pommes blanche du jardin d’éden vous tendent les bras. A vous de les manger.";
+
+  ruleRow1.appendChild(ruleCell1);
+  rulesTable.appendChild(ruleRow1);
+
+  rulesDiv.appendChild(rulesTable);
+  fondDiv.appendChild(rulesDiv);
+
+  // Ajout de la règle 2
+  let ruleRow2 = document.createElement("tr");
+  let ruleCell2 = document.createElement("td");
+  ruleCell2.textContent = "Évitez les anges gris qui veulent vous arrêter !";
+  ruleCell2.style.backgroundColor = "grey";
+  ruleCell2.style.color = "White";
+  ruleCell2.style.margin = " 5px";
+  ruleCell2.style.borderRadius = "10px";
+  ruleRow2.appendChild(ruleCell2);
+  rulesTable.appendChild(ruleRow2);
+
+  rulesDiv.appendChild(rulesTable);
+  fondDiv.appendChild(rulesDiv);
 }
 
 function launchMusic() {
