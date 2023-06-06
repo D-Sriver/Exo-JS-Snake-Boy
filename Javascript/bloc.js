@@ -5,13 +5,17 @@ class Bloc {
   }
 
   generate() {
-    // Génère une position aléatoire pour la Bloc
+    // Génère une position aléatoire pour le Bloc
     let column = Math.floor(Math.random() * this.grid.columns);
     let row = Math.floor(Math.random() * this.grid.rows);
     this.cell = this.grid.getCellFromColumnRow(column, row);
-    // Vérifie si le Bloc est générée sur une cellule occupée par le serpent
-    if (this.cell.style.backgroundColor === "#0f380f") {
-      this.generate();
+
+    // Vérifie si le Bloc est généré sur une cellule occupée par le serpent
+    const snakeCells = snake.cells;
+    const isSnakeCell = snakeCells.some((cell) => cell === this.cell);
+
+    if (isSnakeCell) {
+      this.generate(); // Génère une nouvelle position pour le Bloc
     } else {
       this.cell.style.backgroundColor = "red";
     }

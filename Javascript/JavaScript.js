@@ -9,6 +9,7 @@ let audio = new Audio("./misc/cw_sound39.wav");
 let gameOverSound = new Audio("./misc/lose.mp3");
 let backgroundMusic = new Audio("./misc/bgsound.mp3");
 backgroundMusic.loop = true;
+let blocCounter = 0;
 
 function start() {
   document.body.style.backgroundColor = "#738e0c";
@@ -169,7 +170,15 @@ function startGameLoop() {
         speed -= 5;
         updateScore();
         updateSpeed();
+
+        // Vérification du compteur de blocs
+        blocCounter++;
+        if (blocCounter >= 3) {
+          bloc.generate();
+          blocCounter = 0;
+        }
       }
+
       movement();
       if (bloc.checkCollision(snake)) {
         gameOver = true;
