@@ -105,7 +105,7 @@ class Snake {
     }
     return false;
   }
-
+  // Ajoute la queue du serpent.
   grow() {
     const tail = this.cells[this.cells.length - 1];
     const newPart = this.grid.getCellFromColumnRow(tail.column, tail.row);

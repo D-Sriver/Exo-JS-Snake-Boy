@@ -5,6 +5,8 @@ let snake;
 let gameOver = false;
 let speed = 200;
 let score = 0;
+let X = 20;
+let Y = 20;
 let audio = new Audio("./misc/cw_sound39.wav");
 let gameOverSound = new Audio("./misc/lose.mp3");
 let backgroundMusic = new Audio("./misc/bgsound.mp3");
@@ -26,8 +28,7 @@ function start() {
 }
 function createGrid() {
   // Création de la grille
-  grid = new Grid("Grid00", 50, 50, 20, 20, 15, 15, "#9ec311");
-
+  grid = new Grid("Grid00", 50, 50, X, Y, 15, 15, "#9ec311");
   // Création de la div "bordure"
   let bordureDiv = document.createElement("div");
   bordureDiv.id = "Bordure";
@@ -59,7 +60,7 @@ function createGrid() {
   bordureDiv.appendChild(texteElement);
   document.body.appendChild(bordureDiv);
 }
-
+//création de la section comprenant la grid
 function createScore() {
   let gameSection = document.createElement("section");
   gameSection.id = "Game";
@@ -80,6 +81,7 @@ function createScore() {
   fondDiv.style.top = "30px";
   fondDiv.style.borderRadius = "25px";
 
+  //creation de la div score
   let scoreElement = document.createElement("div");
   scoreElement.id = "Score";
   scoreElement.innerHTML = "Score: " + score;
@@ -92,6 +94,7 @@ function createScore() {
   scoreElement.style.left = "50%";
   scoreElement.style.top = "50%";
 
+  //création de la div speed
   let speedElement = document.createElement("div");
   speedElement.id = "Speed";
   speedElement.innerHTML = "Speed: " + speed;
@@ -104,6 +107,7 @@ function createScore() {
   speedElement.style.left = "50%";
   speedElement.style.top = "50%";
 
+  //creation du bouton pour la musique.
   SoundButton = document.createElement("button");
   SoundButton.textContent = "Lancer la musique";
   SoundButton.style.zIndex = "2";
@@ -137,23 +141,23 @@ function launchMusic() {
   }
 }
 
+// Création du serpent avec emplacement sur la grille.
 function initializeSnake() {
-  // Création du serpent avec emplacement sur la grille.
   snake = new Snake(grid, grid.columns - 10, 10);
   snake.draw();
 }
 
+// Initialisation de la pomme
 function initializePomme() {
-  // Initialisation de la pomme
   pomme = new Pomme(grid);
   pomme.generate();
 }
-
+// Initialisation du bloc
 function initializeBloc() {
   bloc = new Bloc(grid);
   bloc.generate();
 }
-
+//démarre le jeu.
 function startGameLoop() {
   function movement() {
     if (gameOver) {
@@ -194,13 +198,13 @@ function startGameLoop() {
   movement();
 }
 
+// Mettre à jour l'affichage du score
 function updateScore() {
-  // Mettre à jour l'affichage du score
   let scoreElement = document.getElementById("Score");
   scoreElement.innerHTML = "Score: " + score;
 }
+// Mettre à jour l'affichage du score
 function updateSpeed() {
-  // Mettre à jour l'affichage du score
   let scoreElement = document.getElementById("Speed");
   scoreElement.innerHTML = "speed: " + speed;
 }

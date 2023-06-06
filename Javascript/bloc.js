@@ -10,7 +10,7 @@ class Bloc {
     let row = Math.floor(Math.random() * this.grid.rows);
     this.cell = this.grid.getCellFromColumnRow(column, row);
 
-    // Vérifie si le Bloc est généré sur une cellule occupée par le serpent
+    // Vérifie si le Bloc est généré sur une cellule est occupée par le serpent
     const snakeCells = snake.cells;
     const isSnakeCell = snakeCells.some((cell) => cell === this.cell);
 
