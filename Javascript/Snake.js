@@ -2,7 +2,7 @@ class Snake {
   constructor(grid, startColumn, startRow) {
     this.grid = grid;
     this.cells = [];
-    this.direction = "right";
+    this.direction = "";
     // Initialisation du serpent
     this.init(startColumn, startRow);
     // Ajout de l'écouteur d'événement pour les touches de flèches
@@ -27,7 +27,7 @@ class Snake {
   init(startColumn, startRow) {
     // Ajout du serpent
     let cell = this.grid.getCellFromColumnRow(startColumn, startRow);
-    cell.style.backgroundColor = "#9bbc0f	";
+    cell.style.backgroundColor = "#9bbc0f";
     this.cells.push(cell);
   }
 
@@ -35,11 +35,16 @@ class Snake {
     // Dessin du serpent sur la grille
     for (let i = 0; i < this.cells.length; i++) {
       let cell = this.cells[i];
-      cell.style.backgroundColor = "#3f4e07		";
+      cell.style.backgroundColor = "#3f4e07";
     }
   }
 
   move() {
+    // Vérifier si la direction est définie avant de déplacer le serpent
+    if (!this.direction) {
+      return;
+    }
+
     // Déplacement du serpent continue
     let head = this.cells[0];
     let newHead;
@@ -59,14 +64,15 @@ class Snake {
         break;
     }
 
-    // Vérifie si il y a collision avec le mur
-    if (this.checkCollision(newHead)) {
+    // Vérifier les collisions avec le mur ou avec la queue du serpent
+    if (this.checkCollision(newHead) || this.checkSelfCollision(newHead)) {
       gameOverSound.play();
       setTimeout(function () {
         location.reload();
       }, 2000);
       return;
     }
+
     // Ajout de la nouvelle tête du serpent
     newHead.style.backgroundColor = "#0f380f";
     this.cells.unshift(newHead);
@@ -89,7 +95,17 @@ class Snake {
     }
     return false;
   }
-  // Agrandit le snake
+
+  checkSelfCollision(cell) {
+    // Vérification si la cellule est en collision avec la queue du serpent
+    for (let i = 1; i < this.cells.length; i++) {
+      if (this.cells[i] === cell) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   grow() {
     const tail = this.cells[this.cells.length - 1];
     const newPart = this.grid.getCellFromColumnRow(tail.column, tail.row);
