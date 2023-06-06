@@ -172,8 +172,7 @@ function startGameLoop() {
       }
       movement();
       if (bloc.checkCollision(snake)) {
-        gameOver = true; // Définir gameOver sur true pour indiquer que le jeu est terminé
-        alert("Game Over");
+        gameOver = true;
         gameOverSound.play();
 
         setTimeout(function () {

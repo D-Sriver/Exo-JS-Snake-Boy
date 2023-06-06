@@ -61,12 +61,10 @@ class Snake {
 
     // Vérifie si il y a collision avec le mur
     if (this.checkCollision(newHead)) {
-      alert("Game Over");
-      // gameOverSound.play();
-
+      gameOverSound.play();
       setTimeout(function () {
         location.reload();
-      }, 200);
+      }, 2000);
       return;
     }
     // Ajout de la nouvelle tête du serpent
