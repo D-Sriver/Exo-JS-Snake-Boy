@@ -1,9 +1,12 @@
 ﻿let grid;
 let pomme;
+let bloc;
 let snake;
+let gameOver = false;
 let speed = 200;
 let score = 0;
 let audio = new Audio("./misc/cw_sound39.wav");
+let gameOverSound = new Audio("./misc/lose.mp3");
 let backgroundMusic = new Audio("./misc/bgsound.mp3");
 backgroundMusic.loop = true;
 
@@ -13,6 +16,7 @@ function start() {
   createScore();
   initializeSnake();
   initializePomme();
+  initializeBloc();
   startGameLoop();
 
   document.body.style.display = "flex";
@@ -143,8 +147,18 @@ function initializePomme() {
   pomme = new Pomme(grid);
   pomme.generate();
 }
+
+function initializeBloc() {
+  bloc = new Bloc(grid);
+  bloc.generate();
+}
+
 function startGameLoop() {
   function movement() {
+    if (gameOver) {
+      return; // Sortir de la fonction si le jeu est terminé
+    }
+
     setTimeout(() => {
       snake.move();
       snake.draw();
@@ -157,8 +171,18 @@ function startGameLoop() {
         updateSpeed();
       }
       movement();
+      if (bloc.checkCollision(snake)) {
+        gameOver = true; // Définir gameOver sur true pour indiquer que le jeu est terminé
+        alert("Game Over");
+        gameOverSound.play();
+
+        setTimeout(function () {
+          location.reload();
+        }, 2000);
+      }
     }, speed);
   }
+
   movement();
 }
 
